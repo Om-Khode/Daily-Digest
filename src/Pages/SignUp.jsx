@@ -60,7 +60,7 @@ export default function SignUp(props) {
         navigate("/"); //navigate to the domain page
       } else {
         //if the login is unsuccessful
-        // alert(response.data.msg); //display the error message
+        // alert(response.data.msg);
         toast.error(response.data.msg);
         // console.log(response);
       }
