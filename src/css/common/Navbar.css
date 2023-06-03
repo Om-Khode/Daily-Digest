@@ -1,0 +1,8 @@
+@media screen and (max-width: 991.5px) {
+    .navbarBtnContainer{
+        flex-direction: column !important;
+        width: 15rem;
+        margin: auto;
+        max-width: 90%;
+    }
+}
