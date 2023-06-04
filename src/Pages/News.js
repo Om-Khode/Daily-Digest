@@ -78,7 +78,7 @@ const News = (props) => {
     try {
       const response = await axios.get(
         //post request to the backend
-        "http://localhost:5000/api/news/fetchallnews",
+        process.env.REACT_APP_URL + "/api/news/fetchallnews",
         config,
         body
       );

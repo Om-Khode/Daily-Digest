@@ -48,7 +48,7 @@ export default function SignUp(props) {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/createuser",
+        process.env.REACT_APP_URL + "/api/auth/createuser",
         body,
         config
       );

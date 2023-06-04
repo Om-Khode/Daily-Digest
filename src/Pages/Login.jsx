@@ -37,7 +37,7 @@ export default function Login(props) {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        process.env.REACT_APP_URL + "/api/auth/login",
         body,
         config
       );

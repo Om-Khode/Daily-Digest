@@ -23,7 +23,7 @@ const Bookmarked = (props) => {
   const fetchallnews = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/");
+      navigate("/login");
       toast.error("log in first");
       return;
     }
@@ -39,7 +39,7 @@ const Bookmarked = (props) => {
     try {
       const response = await axios.get(
         //post request to the backend
-        "http://localhost:5000/api/news/fetchallnews",
+        process.env.REACT_APP_URL + "/api/news/fetchallnews",
         config,
         body
       );
@@ -59,6 +59,7 @@ const Bookmarked = (props) => {
 
   useEffect(() => {
     fetchallnews();
+    // eslint-disable-next-line
   }, [changed]);
 
   return (
