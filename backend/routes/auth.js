@@ -122,7 +122,11 @@ router.post("/getuser", fetchuser, async (req, res) => {
   try {
     const userId = req.user.id;
     const user = await User.findById(userId).select("-password");
-    res.send(user);
+    if (user) {
+      res.status(200).json({ success: true, user: user });
+    } else {
+      res.status(404).json({ success: false, msg: "User not found" });
+    }
   } catch (error) {
     console.log(error.message);
     res.status(500).send("Internal error server!");
