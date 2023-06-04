@@ -1,6 +1,7 @@
-const connectToMongo = require("./db");
 const express = require("express");
+const connectToMongo = require("./db");
 const cors = require("cors");
+require("dotenv").config({ path: "./.env" });
 
 connectToMongo();
 
@@ -12,12 +13,13 @@ app.use(
   })
 );
 
-const port = 5000;
+const port = process.env.PORT;
+const secret = process.env.SECRET;
 
 app.use(express.json());
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/news", require("./routes/news"));
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`listening on port ${port}`);
 });

@@ -5,8 +5,9 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fetchuser = require("../middleware/fetchuser");
+require("dotenv").config();
 
-const JWT_SECRET = "secret";
+const JWT_SECRET = process.env.SECRET;
 
 // Route 1: Create user / SignUp
 router.post(
