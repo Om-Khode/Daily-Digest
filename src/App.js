@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "./components/common/NavBar";
-import News from "./Pages/News";
+import News from "./pages/News";
 import { Routes, Route } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
-import Login from "./Pages/Login";
-import SignUp from "./Pages/SignUp";
-// import NewsState from "./context/news/NewsState";
-import Bookmarked from "./Pages/Bookmarked";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import Bookmarked from "./pages/Bookmarked";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import heart from "../../assets/images/heart.svg";
 import heartFill from "../../assets/images/heart-fill.svg";
 import heartLight from "../../assets/images/heart-light.svg";
@@ -7,7 +7,6 @@ import "../../css/common/NewsItem.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import newsContext from "../../context/news/newsContext";
 
 const NewsItem = (props) => {
   let {
@@ -25,8 +24,6 @@ const NewsItem = (props) => {
     changed,
     setChanged,
   } = props;
-
-  const a = useContext(newsContext);
 
   const navigate = useNavigate();
 
@@ -130,6 +127,7 @@ const NewsItem = (props) => {
 
   useEffect(() => {
     fetchId();
+    // eslint-disable-next-line
   }, [bookmarked]);
 
   return (
