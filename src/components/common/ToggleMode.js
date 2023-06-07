@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../css/common/ToggleMode.css";
+import "../../css/common/ToggleMode.css";
 
 export default function ToggleMode(props) {
   const { darkMode, setDarkMode } = props;

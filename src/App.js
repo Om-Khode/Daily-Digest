@@ -1,22 +1,17 @@
-import "./App.css";
-
 import React, { useEffect, useState } from "react";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/common/NavBar";
 import News from "./Pages/News";
 import { Routes, Route } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
-import NewsState from "./context/news/NewsState";
+// import NewsState from "./context/news/NewsState";
 import Bookmarked from "./Pages/Bookmarked";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-  const pageSize = 5;
-  const apiKey = process.env.REACT_APP_NEWS_API;
   const [progress, setProgress] = useState(0);
-
   const [loggedIn, setLoggedIn] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
@@ -56,12 +51,9 @@ const App = () => {
           element={
             <News
               setProgress={setProgress}
-              apiKey={apiKey}
               darkMode={darkMode}
-              key="general"
-              pageSize={pageSize}
-              country="in"
               category="general"
+              key="general"
               loggedIn={loggedIn}
             />
           }
@@ -72,12 +64,9 @@ const App = () => {
           element={
             <News
               setProgress={setProgress}
-              apiKey={apiKey}
               darkMode={darkMode}
-              key="business"
-              pageSize={pageSize}
-              country="in"
               category="business"
+              key="business"
               loggedIn={loggedIn}
             />
           }
@@ -88,12 +77,9 @@ const App = () => {
           element={
             <News
               setProgress={setProgress}
-              apiKey={apiKey}
               darkMode={darkMode}
-              key="entertainment"
-              pageSize={pageSize}
-              country="in"
               category="entertainment"
+              key="entertainment"
               loggedIn={loggedIn}
             />
           }
@@ -104,12 +90,9 @@ const App = () => {
           element={
             <News
               setProgress={setProgress}
-              apiKey={apiKey}
               darkMode={darkMode}
-              key="general"
-              pageSize={pageSize}
-              country="in"
               category="general"
+              key="general"
               loggedIn={loggedIn}
             />
           }
@@ -120,12 +103,9 @@ const App = () => {
           element={
             <News
               setProgress={setProgress}
-              apiKey={apiKey}
               darkMode={darkMode}
-              key="health"
-              pageSize={pageSize}
-              country="in"
               category="health"
+              key="health"
               loggedIn={loggedIn}
             />
           }
@@ -136,12 +116,9 @@ const App = () => {
           element={
             <News
               setProgress={setProgress}
-              apiKey={apiKey}
               darkMode={darkMode}
-              key="science"
-              pageSize={pageSize}
-              country="in"
               category="science"
+              key="science"
               loggedIn={loggedIn}
             />
           }
@@ -152,12 +129,9 @@ const App = () => {
           element={
             <News
               setProgress={setProgress}
-              apiKey={apiKey}
               darkMode={darkMode}
-              key="sports"
-              pageSize={pageSize}
-              country="in"
               category="sports"
+              key="sports"
               loggedIn={loggedIn}
             />
           }
@@ -168,12 +142,9 @@ const App = () => {
           element={
             <News
               setProgress={setProgress}
-              apiKey={apiKey}
               darkMode={darkMode}
-              key="technology"
-              pageSize={pageSize}
-              country="in"
               category="technology"
+              key="technology"
               loggedIn={loggedIn}
             />
           }
@@ -184,12 +155,9 @@ const App = () => {
           element={
             <Bookmarked
               setProgress={setProgress}
-              apiKey={apiKey}
               darkMode={darkMode}
-              key="Bookmark"
-              pageSize={pageSize}
-              country="in"
               category="Bookmark"
+              key="Bookmark"
               loggedIn={loggedIn}
             />
           }

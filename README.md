@@ -1,70 +1,101 @@
-# Getting Started with Create React App.
+# Daily Digest News App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Daily Digest News App! This application is built using the MERN stack (MongoDB, Express, React, and Node.js) and provides a platform to fetch the latest and live news from various sources using the News API. The app offers several features to enhance your news reading experience.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### 1. Fetch Latest and Live News
 
-### `npm start`
+The Daily Digest utilizes the News API to fetch the most up-to-date news articles from reliable sources. It provides real-time access to news articles from around the world.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 2. Categories
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The app offers a wide range of news categories to cater to different interests. You can explore news articles from the following categories:
 
-### `npm test`
+- General
+- Business
+- Entertainment
+- Health
+- Science
+- Sports
+- Technology
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Simply select a category, and the app will display relevant news articles.
 
-### `npm run build`
+### 3. Login and Sign Up
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To access personalized features and enhance your experience, the app includes a login and sign-up page. Users can create an account, log in securely, and enjoy additional functionalities.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 4. Bookmark News
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Found an interesting article that you want to read later? No problem! The Daily Digest App allows you to bookmark your favorite news articles. You can easily save them and access them later from your bookmarks section.
 
-### `npm run eject`
+### 5. Light and Dark Mode
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Customize your reading experience with the light and dark mode options. Whether you prefer a light background for a clean look or a dark background for better readability at night, the app has you covered. Switch between modes effortlessly to suit your preferences.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Prerequisites
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To run the Daily Digest App locally, you need to have the following software installed on your machine:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Node.js
+- MongoDB
 
-## Learn More
+## Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Follow these steps to install and run the Daily Digest News App:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Clone the repository:
 
-### Code Splitting
+```
+git clone https://github.com/Om-Khode/Daily-Digest.git
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. Change into the project directory:
 
-### Analyzing the Bundle Size
+```
+cd Daily-Digest
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. Install the dependencies for both the server and client:
 
-### Making a Progressive Web App
+```
+npm install
+cd backend && npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+4. Configure the environment variables:
 
-### Advanced Configuration
+- Create a `.env` file in the `root` directory.
+- Obtain an API key from [News API](https://newsapi.org/) by signing up for an account.
+- Add the following variables to the `.env` file:
+  - `REACT_APP_NEWS_API` - Your API key obtained from the News API.
+  - `REACT_APP_URL` - The URI for your backend calls.
+  - `MONGODB_URI` - The URI for your MongoDB database.
+- Create a .env file in the backend directory.
+- Add the following variables to the .env file:
+  - `PORT` - The port on which your your server will run.
+  - `SECRET` - Your secret key for JWT authentication.
+  - `CONNECTION_STRING` - The URI for your MongoDB database.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+5. Start the development server:
 
-### Deployment
+In the `root` directory, run `npm start` to start the Node.js server.
+In the `backend` directory, run `nodemon index.js` to start the React development server.
+Open your browser and navigate to `http://localhost:3000` to access the News App.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Contributors
 
-### `npm run build` fails to minify
+The Daily Digest News App was developed by [Om Khode](https://github.com/Om-Khode) and welcomes contributions from the open-source community.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you encounter any issues or have suggestions for improvements, please create a new issue on the GitHub repository.
+
+## Acknowledgments
+
+The News App extends its gratitude to the following resources and individuals:
+
+- [CodeWithHarry](https://codewithharry.com/): For their comprehensive tutorials and guidance on frontend development. Their educational content was instrumental in building the frontend of the News App.
+
+- [Bootstrap](https://getbootstrap.com/): For providing an extensive collection of CSS and JavaScript components. Bootstrap played a crucial role in designing and styling the News App, making it visually appealing and responsive.
+
+- The developers of the News API: For providing a reliable and efficient API that allows the News App to fetch the latest news articles from various sources. The app's functionality heavily relies on the News API's robust infrastructure.

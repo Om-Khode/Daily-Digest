@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import "../css/common/Navbar.css";
+import "../../css/common/Navbar.css";
 import { useMediaQuery } from "react-responsive";
 import ToggleMode from "./ToggleMode";
 import { useLocation } from "react-router-dom";

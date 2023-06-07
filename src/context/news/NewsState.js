@@ -1,54 +1,150 @@
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import NewsContext from "./newsContext";
+import { toast } from "react-toastify";
 
 const NewsState = (props) => {
-  const s1 = [
-    {
-      _id: "647b30ff7c9c57f82e08da23",
-      user: "647a4b68475ee53635070e75",
-      title: "The Hidden Dangers of the Decentralized Web",
-      description:
-        "From social networks to crypto, independently run servers are being touted as a solution to the internet’s problems. But they’re far from a magic bullet.",
-      imageUrl:
-        "https://media.wired.com/photos/6466a28c9ec11a2433532a66/191:100/w_1280,c_limit/Cons_Social.jpg",
-      newsUrl:
-        "https://www.wired.com/story/the-hidden-dangers-of-the-decentralized-web/",
-      author: "Jessica Maddox",
-      newsDate: "2023-05-19T12:00:00Z",
-      source: "unknown",
-      date: "2023-06-03T12:24:31.044Z",
-      __v: 0,
-    },
-    {
-      _id: "647b317c7c9c57f82e08da26",
-      user: "647a4b68475ee53635070e75",
-      title: "The Hidden Dangers of the Decentralized Web",
-      description:
-        "From social networks to crypto, independently run servers are being touted as a solution to the internet’s problems. But they’re far from a magic bullet.",
-      imageUrl:
-        "https://media.wired.com/photos/6466a28c9ec11a2433532a66/191:100/w_1280,c_limit/Cons_Social.jpg",
-      newsUrl:
-        "https://www.wired.com/story/the-hidden-dangers-of-the-decentralized-web/",
-      author: "Jessica Maddox",
-      newsDate: "2023-05-19T12:00:00Z",
-      source: "unknown",
-      date: "2023-06-03T12:26:36.085Z",
-      __v: 0,
-    },
-  ];
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [bookmarked, setBookmarked] = useState();
+  const navigate = useNavigate();
 
-  const [state, setState] = useState(s1);
+  const fetchallnews = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return;
+    }
 
-  const addNews = (news) => {
-    console.log("Adding a news!");
+    let body = {};
+
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token,
+      },
+    };
+    try {
+      const response = await axios.get(
+        //post request to the backend
+        process.env.REACT_APP_URL + "/api/news/fetchallnews",
+        config,
+        body
+      );
+      if (response.data.success === true) {
+        const allBookmarked = response.data.data;
+        // const titles = allBookmarked.map((obj) => obj.title);
+        const titles = allBookmarked.map(({ title, _id }) => ({ title, _id }));
+        setBookmarked(titles);
+      } else {
+        // console.log(response.data.msg);
+      }
+    } catch (err) {
+      // console.log(err);
+    }
   };
 
-  const deleteNews = (id) => {
-    console.log("deleting a news!");
+  const handleAddBookmark = async (note) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      toast.error("log in first");
+      return;
+    }
+
+    let { title, description, imageUrl, newsUrl, author, date, source } = note;
+
+    let body = JSON.stringify({
+      //body of the request
+      title,
+      description,
+      imageUrl,
+      newsUrl,
+      author,
+      newsDate: date,
+      source,
+    });
+
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token,
+      },
+    };
+    try {
+      const response = await axios.post(
+        //post request to the backend
+        process.env.REACT_APP_URL + "/api/news/addnews",
+        body,
+        config
+      );
+      if (response.data.success === true) {
+        setIsBookmarked(true);
+        console.log(response.data.msg);
+        toast.success(response.data.msg);
+      } else {
+        toast.error(response.data.msg);
+      }
+    } catch (err) {
+      // console.log(err);
+    }
+  };
+
+  const fetchId = (note) => {
+    if (bookmarked) {
+      const matchingObject = bookmarked.find(
+        (item) => item.title === note.title
+      );
+      if (matchingObject) {
+        setIsBookmarked(true);
+        if (!note.id) {
+          return (note.id = matchingObject._id);
+        }
+      }
+    }
+  };
+
+  const handleRemoveBookmark = async (id) => {
+    if (!id) {
+      id = fetchId();
+    }
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      alert("log in first");
+      return;
+    }
+
+    let body = {};
+
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token,
+      },
+    };
+    try {
+      const response = await axios.delete(
+        //post request to the backend
+        process.env.REACT_APP_URL + "/api/news/deletenews/" + id,
+        config,
+        body
+      );
+      if (response.data.success === true) {
+        setIsBookmarked(false);
+        console.log(response.data.msg);
+        toast.success(response.data.msg);
+      } else {
+        toast.error(response.data.msg);
+      }
+    } catch (err) {
+      // console.log(err);
+    }
   };
 
   return (
-    <NewsContext.Provider value={state}>{props.children}</NewsContext.Provider>
+    <NewsContext.Provider value={{ handleAddBookmark, handleRemoveBookmark }}>
+      {props.children}
+    </NewsContext.Provider>
   );
 };
 

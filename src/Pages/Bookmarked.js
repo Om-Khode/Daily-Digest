@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import NewsItem from "../components/NewsItem";
+import NewsItem from "../components/common/NewsItem";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Spinner from "../components/common/Spinner";
 
 const Bookmarked = (props) => {
   const [articles, setArticles] = useState([]);
   const [bookmarked, setBookmarked] = useState([]);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
   const [changed, setChanged] = useState(false);
+
+  const navigate = useNavigate();
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -21,6 +24,7 @@ const Bookmarked = (props) => {
   }, []);
 
   const fetchallnews = async () => {
+    setLoading(true);
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/login");
@@ -46,7 +50,6 @@ const Bookmarked = (props) => {
       if (response.data.success === true) {
         setArticles(response.data.data);
         const allBookmarked = response.data.data;
-        // const titles = allBookmarked.map((obj) => obj.title);
         const titles = allBookmarked.map(({ title, _id }) => ({ title, _id }));
         setBookmarked(titles);
       } else {
@@ -55,6 +58,7 @@ const Bookmarked = (props) => {
     } catch (err) {
       // console.log(err);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -70,7 +74,7 @@ const Bookmarked = (props) => {
       >
         Daily Digest - {capitalizeFirstLetter(props.category)}
       </h1>
-      {/* {loading && <Spinner />} */}
+      {loading && <Spinner />}
       <div className="container ">
         <div className="row">
           {articles.length > 0 ? (

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import heart from "../assets/images/heart.svg";
-import heartFill from "../assets/images/heart-fill.svg";
-import heartLight from "../assets/images/heart-light.svg";
-import heartFillLight from "../assets/images/heart-fill-light.svg";
-import "../css/common/NewsItem.css";
+import React, { useEffect, useState, useContext } from "react";
+import heart from "../../assets/images/heart.svg";
+import heartFill from "../../assets/images/heart-fill.svg";
+import heartLight from "../../assets/images/heart-light.svg";
+import heartFillLight from "../../assets/images/heart-fill-light.svg";
+import "../../css/common/NewsItem.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import newsContext from "../../context/news/newsContext";
 
 const NewsItem = (props) => {
   let {
@@ -24,6 +25,8 @@ const NewsItem = (props) => {
     changed,
     setChanged,
   } = props;
+
+  const a = useContext(newsContext);
 
   const navigate = useNavigate();
 
@@ -64,7 +67,7 @@ const NewsItem = (props) => {
       if (response.data.success === true) {
         setIsBookmarked(true);
         setChanged(!changed);
-        console.log(response.data.msg);
+        // console.log(response.data.msg);
         toast.success(response.data.msg);
       } else {
         toast.error(response.data.msg);
@@ -115,7 +118,7 @@ const NewsItem = (props) => {
       if (response.data.success === true) {
         setIsBookmarked(false);
         setChanged(!changed);
-        console.log(response.data.msg);
+        // console.log(response.data.msg);
         toast.success(response.data.msg);
       } else {
         toast.error(response.data.msg);
