@@ -18,7 +18,6 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/news", require("./routes/news"));
-app.use("/api/data", require("./routes/data"));
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
