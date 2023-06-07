@@ -69,11 +69,14 @@ cd backend && npm install
 - Create a `.env` file in the `root` directory.
 - Obtain an API key from [News API](https://newsapi.org/) by signing up for an account.
 - Add the following variables to the `.env` file:
+
   - `REACT_APP_NEWS_API` - Your API key obtained from the News API.
   - `REACT_APP_URL` - The URI for your backend calls.
   - `MONGODB_URI` - The URI for your MongoDB database.
+
 - Create a .env file in the backend directory.
 - Add the following variables to the .env file:
+
   - `PORT` - The port on which your your server will run.
   - `SECRET` - Your secret key for JWT authentication.
   - `CONNECTION_STRING` - The URI for your MongoDB database.
