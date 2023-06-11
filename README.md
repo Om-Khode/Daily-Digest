@@ -74,8 +74,8 @@ cd backend && npm install
   - `REACT_APP_URL` - The URI for your backend calls.
   - `MONGODB_URI` - The URI for your MongoDB database.
 
-- Create a .env file in the backend directory.
-- Add the following variables to the .env file:
+- Create a `.env` file in the backend directory.
+- Add the following variables to the `.env` file:
 
   - `PORT` - The port on which your your server will run.
   - `SECRET` - Your secret key for JWT authentication.

@@ -1,8 +1,6 @@
-const express = require("express");
-const router = express.Router();
 const fs = require("fs");
 
-router.get("/fetchallnews", async (req, res) => {
+const getAllNews = async (req, res) => {
   try {
     let count = 0;
     const news = fs.readFileSync(
@@ -24,6 +22,8 @@ router.get("/fetchallnews", async (req, res) => {
     console.log(error.message);
     res.status(500).send({ success: false, msg: "Internal server error" });
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  getAllNews,
+};
