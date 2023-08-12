@@ -150,6 +150,9 @@ const NewsItem = (props) => {
         <img
           src={!imageUrl ? "http://via.placeholder.com/640x360" : imageUrl}
           className="card-img-top"
+          style={{
+            maxHeight: "200px",
+          }}
           alt="..."
         />
         <div className="card-body">

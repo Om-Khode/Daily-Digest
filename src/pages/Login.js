@@ -23,7 +23,7 @@ export default function Login(props) {
 
     const { email, password } = credentials;
     if (!email || !password) {
-      alert("Enter all fields!");
+      toast.error("Enter all fields!");
       return;
     }
 

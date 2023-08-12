@@ -102,3 +102,7 @@ The News App extends its gratitude to the following resources and individuals:
 - [Bootstrap](https://getbootstrap.com/): For providing an extensive collection of CSS and JavaScript components. Bootstrap played a crucial role in designing and styling the News App, making it visually appealing and responsive.
 
 - The developers of the News API: For providing a reliable and efficient API that allows the News App to fetch the latest news articles from various sources. The app's functionality heavily relies on the News API's robust infrastructure.
+
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).

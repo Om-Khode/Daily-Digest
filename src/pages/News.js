@@ -7,7 +7,7 @@ import axios from "axios";
 
 const News = (props) => {
   const [articles, setArticles] = useState([]);
-  const [bookmarked, setBookmarked] = useState();
+  const [bookmarked, setBookmarked] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
@@ -24,16 +24,17 @@ const News = (props) => {
       props.setProgress(10);
       const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${apiKey}&page=${page}&pageSize=${props.pageSize}`;
       setLoading(true);
-      let data = await fetch(url);
+      let data = await axios.get(url);
       props.setProgress(30);
-      let parsedData = await data.json();
+      let parsedData = data.data;
       props.setProgress(70);
       setArticles(parsedData.articles);
       setTotalResults(parsedData.totalResults);
       setLoading(false);
       props.setProgress(100);
     } catch (error) {
-      // console.log(error);
+      console.log(error);
+      // Provide feedback to the user about the error
     }
   };
 
@@ -51,15 +52,16 @@ const News = (props) => {
       }&category=${props.category}&apiKey=${apiKey}&page=${page + 1}&pageSize=${
         props.pageSize
       }`;
-      setPage(page + 1);
-      let data = await fetch(url);
+      setPage((prevPage) => prevPage + 1);
+      let data = await axios.get(url);
       if (data) {
-        let parsedData = await data.json();
-        setArticles(articles.concat(parsedData.articles));
+        let parsedData = data.data;
+        setArticles((prevArticles) => prevArticles.concat(parsedData.articles));
         setTotalResults(parsedData.totalResults);
       }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
+      // Provide feedback to the user about the error
     }
   };
 
@@ -86,14 +88,15 @@ const News = (props) => {
       );
       if (response.data.success === true) {
         const allBookmarked = response.data.data;
-        // const titles = allBookmarked.map((obj) => obj.title);
         const titles = allBookmarked.map(({ title, _id }) => ({ title, _id }));
         setBookmarked(titles);
       } else {
-        // console.log(response.data.msg);
+        console.log(response.data.msg);
+        // Provide feedback to the user about the error
       }
     } catch (err) {
-      // console.log(err);
+      console.log(err);
+      // Provide feedback to the user about the error
     }
   };
 
@@ -149,6 +152,8 @@ const News = (props) => {
   );
 };
 
+export default News;
+
 News.defaultProps = {
   country: "in",
   pageSize: 8,
@@ -160,5 +165,3 @@ News.propTypes = {
   pageSize: PropTypes.number,
   category: PropTypes.string,
 };
-
-export default News;
