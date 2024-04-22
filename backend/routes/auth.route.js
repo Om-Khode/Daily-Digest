@@ -6,6 +6,7 @@ const {
   createUser,
   loginUser,
   getUserDetails,
+  verifyUser,
 } = require("../controllers/auth.controller");
 
 // Route 1: Create user / SignUp
@@ -28,5 +29,7 @@ router.post(
 );
 
 router.post("/getuser", fetchuser, getUserDetails);
+
+router.get("/verify/:id/:otp", verifyUser);
 
 module.exports = router;

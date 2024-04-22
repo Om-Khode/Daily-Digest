@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../../css/common/Navbar.css";
 import { useMediaQuery } from "react-responsive";
@@ -13,6 +13,8 @@ const NavBar = (props) => {
   const { loggedIn, darkMode, setLoggedIn, setDarkMode } = props;
   const navigate = useNavigate();
 
+  const disabled = ["/email"];
+
   const isTogglerVisible = useMediaQuery({
     query: "(max-width: 991.5px)",
   });
@@ -22,6 +24,8 @@ const NavBar = (props) => {
       buttonRef.current.click();
     }
   };
+
+  console.log(location.pathname);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -37,7 +41,7 @@ const NavBar = (props) => {
       <nav
         className={`navbar fixed-top navbar-expand-lg ${
           darkMode === true ? "navbar-dark bg-dark" : "navbar-light bg-light"
-        }`}
+        } ${disabled.includes(location.pathname) && "d-none"}`}
       >
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">

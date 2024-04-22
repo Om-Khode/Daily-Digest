@@ -54,14 +54,14 @@ export default function SignUp(props) {
       );
       if (response.data.success === true) {
         //if the login is successful
-        toast.success(response.data.msg);
-        localStorage.setItem("token", response.data.authtoken); //store the token in the local storage
-        setLoggedIn(true);
-        navigate("/"); //navigate to the domain page
+        // toast.success(response.data.msg);
+        // localStorage.setItem("token", response.data.authtoken); //store the token in the local storage
+        // setLoggedIn(true);
+        navigate("/email"); //navigate to the domain page
       } else {
         //if the login is unsuccessful
         // alert(response.data.msg);
-        toast.error(response.data.msg);
+        // toast.error(response.data.msg);
         // console.log(response);
       }
     } catch (err) {

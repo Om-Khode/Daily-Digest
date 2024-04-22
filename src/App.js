@@ -8,6 +8,8 @@ import SignUp from "./pages/SignUp";
 import Bookmarked from "./pages/Bookmarked";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Email from "./pages/Email";
+import Verified from "./pages/Verified";
 
 const App = () => {
   const [progress, setProgress] = useState(0);
@@ -170,6 +172,16 @@ const App = () => {
           exact
           path="/signup"
           element={<SignUp darkMode={darkMode} setLoggedIn={setLoggedIn} />}
+        />
+        <Route
+          exact
+          path="/email"
+          element={<Email darkMode={darkMode} setLoggedIn={setLoggedIn} />}
+        />
+        <Route
+          exact
+          path="/verify/:id/:code"
+          element={<Verified darkMode={darkMode} setLoggedIn={setLoggedIn} />}
         />
       </Routes>
     </div>
