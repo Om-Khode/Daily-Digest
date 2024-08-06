@@ -72,7 +72,6 @@ cd backend && npm install
 
   - `REACT_APP_NEWS_API` - Your API key obtained from the News API.
   - `REACT_APP_URL` - The URI for your backend calls.
-  - `MONGODB_URI` - The URI for your MongoDB database.
 
 - Create a `.env` file in the backend directory.
 - Add the following variables to the `.env` file:
@@ -84,7 +83,7 @@ cd backend && npm install
 5. Start the development server:
 
 In the `root` directory, run `npm start` to start the Node.js server.
-In the `backend` directory, run `nodemon index.js` to start the React development server.
+In the `backend` directory, run `npm start` to start the React development server.
 Open your browser and navigate to `http://localhost:3000` to access the News App.
 
 ## Contributors
